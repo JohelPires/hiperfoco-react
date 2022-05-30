@@ -8,7 +8,7 @@ function Pomodoro() {
         tempoPomoAtual: '25:00'
     })
 
-    const PomoTempo = 1500 //25 minutos
+    const PomoTempo = 5 //  1500 = 25 minutos
 
     const [counter, setCounter] = React.useState(PomoTempo)
     const [counterStatus, setCounterStatus] = React.useState(false)
@@ -16,8 +16,13 @@ function Pomodoro() {
     let intervalID
 
     React.useEffect(() => {
-        const timer =
-          counterStatus && counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+        const timer = 
+            counterStatus && setInterval(() => setCounter(counter - 1), 1000);
+
+        if (counter === 0){
+
+            // set counter to the short pause value
+        }
         return () => clearInterval(timer);
       }, [counter, counterStatus]);
 
@@ -27,9 +32,20 @@ function Pomodoro() {
 
     function minutos(sec){
 
-        const segundos = sec%60 + '0'
+        let segundos
         
-        return Math.floor(sec/60) + ':' + segundos.slice(0,2)
+        if (sec%60 === 0){
+           segundos = '00' 
+        } else if (sec%60 < 10) {
+            segundos = '0' + sec%60
+
+        } else {
+            segundos = sec%60
+        }
+        
+        
+        
+        return Math.floor(sec/60) + ':' + segundos //.slice(0,2)
 
     }
 
