@@ -1,0 +1,29 @@
+body, * {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+  background-color: lightgreen;
+  min-height: 100vh;
+}
+
+.navbar {
+  
+}
+
+
+.pomodoro {
+  margin-top: 70px;
+  color: white;
+
+  h1 {
+    font-size: 50px;
+  }
+
+  .play-pause {
+    margin-top: 30px;
+    font-size: 35px;
+  }
+}
