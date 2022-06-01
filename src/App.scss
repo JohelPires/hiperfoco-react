@@ -27,6 +27,8 @@ body, * {
   width: 100%;
   height: 50px;
   padding: 0 30px;
+  text-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  
 }
 .menu-items > h3 {
   font-weight: 400;
@@ -34,9 +36,15 @@ body, * {
 
 
 .pomodoro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // justify-content: space-between;
   margin-top: 70px;
   background-color: white;
   color: $font-color;
+  width: 400px;
+  height: 300px;
   max-width: 500px;
   max-height: 400px;
   margin: auto;
@@ -60,22 +68,34 @@ body, * {
     letter-spacing: 1.6px;
   }
 
+  .counter-container {
+    display: flex;
+    .space{
+      width: 12px;
+    }
+    .umfoco {
+      height: 7px;
+      width: 7px;
+      border-radius: 50%;
+      border: 1px solid lightgray;
+      background-color: transparent;
+      margin-top: 21px;
+      margin-right: 5px;
+      &.concluido {
+      border: 1px solid $font-color;
+      background-color: $font-color;
+      }
+      &.atual {
+        border: 1px solid $font-color;
+        // background-color: orange;
+      }
+    }
+  
+  }
   .play-pause {
     margin-top: 30px;
     font-size: 40px;
   }
 }
 
-.counter-container {
-  display: flex;
-  .umfoco {
-    height: 7px;
-    width: 7px;
-    border-radius: 50%;
-    border: 1px solid $font-color;
-    background-color: transparent;
-    margin-top: 12px;
-    margin-right: 5px;
-  }
-}
 
