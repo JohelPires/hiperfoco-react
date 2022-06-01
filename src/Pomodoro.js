@@ -34,9 +34,9 @@ function Pomodoro() {
 
     const [focoHoje, setFocoHoje] = React.useState({
         pomoCompletas: 0,  // Número de ciclos completos de 1 foco e uma pausa curta.
-        tempoDeFoco: 5,//1500,
-        pausaCurta: 3,//300,
-        pausaLonga: 4//900
+        tempoDeFoco: 1500, //1500 = 25 minutos
+        pausaCurta: 300, //300 = 5 minutos
+        pausaLonga: 900 //900 = 15 minutos
     })
 
 
@@ -109,18 +109,19 @@ function Pomodoro() {
         return Math.floor(sec / 60) + ':' + segundos //.slice(0,2)
     }
 
-    for (let i = 0; i < 8; i++){
-
+    if (pomoCompletas > 8){
+        setPomoCompletas(0)
     }
 
 
 
     return (
         <div className='pomodoro'>
+            <h2>Pomodoro timer</h2>
             <h1>{minutos(counter)}</h1>
             <h3>{counterStatus}</h3>
             <PomoCountBar 
-                pomoCount={pomoCompletas}
+                pomoCompletas={pomoCompletas}
             />
             <div onClick={toggle} className='play-pause'>{counterPlayPause ? <BsPauseCircle /> : <BsPlayCircle />}</div>
         </div>

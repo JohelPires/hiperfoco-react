@@ -6,7 +6,7 @@ function PomoCountBar(props) {
 
     const elements = n.map(i => {
 
-        if (props.pomoCount > i) {
+        if (props.pomoCompletas > i) {
             return <div className='umfoco concluido'></div>
         } else {
             return <div className='umfoco'></div>
@@ -15,7 +15,7 @@ function PomoCountBar(props) {
     })
     const elements2 = n.map(i => {
 
-        if (props.pomoCount > i+4) {
+        if (props.pomoCompletas > i+4) {
             return <div className='umfoco concluido'></div>
         } else {
             return <div className='umfoco'></div>
