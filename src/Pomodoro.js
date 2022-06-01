@@ -1,119 +1,120 @@
 import React from 'react'
+import useSound from 'use-sound'
+import bell from './temple_bell.mp3'
 import { BsPauseCircle, BsPlayCircle } from 'react-icons/bs'
+
+// Counter Status:
+// 'parado', 'pomo', 'pausaCurta', 'pausaLonga'
+// pomoCount:
+// 0 = parado
+// 1 = Foco
+// 2 = pausa curta
+// 3 = Foco
+// 4 = pausa curta
+// 5 = Foco
+// 6 = pausa curta
+// 7 = Foco
+// 8 = pausa longa
+
+// TO-DO: 
+// - stop button: sets pomoCount to 0, asks for confirmation
+// - Change states to one single state. See if it's necessary
+// - Clean up the code and use the variables for the tempos.
+// - colocar as mudanças de cores.
+// - Local storage para gravar os dados e estatísticas
+
+// - dividir em componentes: um para o pomodoro em si, outro para estatisticas.
+// - graphs and animations
+
+// - colocar o marcador de pomodoros feitos: .... ....
 
 function Pomodoro() {
 
     const [focoHoje, setFocoHoje] = React.useState({
         pomoCount: 0,
-        pomoTempo: 1500,
+        tempoDeFoco: 1500,
         pausaCurta: 300,
         pausaLonga: 900
     })
 
-    const PomoTempo = 5 //  1500 = 25 minutos
+    const [counter, setCounter] = React.useState(focoHoje.tempoDeFoco)
 
-    const [counter, setCounter] = React.useState(PomoTempo)
 
-    // Counter Status:
-    // 'parado', 'pomo', 'pausaCurta', 'pausaLonga'
-    // pomoCount:
-    // 0 = parado
-    // 1 = Foco
-    // 2 = pausa curta
-    // 3 = Foco
-    // 4 = pausa curta
-    // 5 = Foco
-    // 6 = pausa curta
-    // 7 = Foco
-    // 8 = pausa longa
-
-    // TO-DO: 
-    // - stop button: sets pomoCount to 0, asks for confirmation
 
 
     const [counterStatus, setCounterStatus] = React.useState('parado')
     const [counterPlayPause, setCounterPlayPause] = React.useState(false)
     const [pomoCount, setPomoCount] = React.useState(0)
-    
+    const [play] = useSound(bell)
 
     let intervalID
 
     React.useEffect(() => {
-        const timer = 
+        const timer =
             counterPlayPause && setInterval(() => setCounter(counter - 1), 1000);
 
-        if (counter === 0){
+        if (counter === 0) {
             // PLAY SOUND, CHANGE BG COLOR, ETC.
+            play()
 
-            
-            
-            
-            
             setCounterStatus((prev) => {
-                if (pomoCount % 2 !== 0 && pomoCount < 7){
-                    setCounter(3) // mudar para pausa curta: setCounter(pausaCurta)
+                if (pomoCount % 2 !== 0 && pomoCount < 7) {
+                    setCounter(focoHoje.pausaCurta) // mudar para pausa curta: setCounter(pausaCurta)
                     return 'Pausa curta'
-                } else if (pomoCount % 2 === 0 && pomoCount < 7){
-                    setCounter(5) // Mudar para tempo de foco
+                } else if (pomoCount % 2 === 0 && pomoCount < 7) {
+                    setCounter(focoHoje.tempoDeFoco) // Mudar para tempo de foco
                     return 'Foco'
-                } else if (pomoCount === 7){
-                    setCounter(4) // Mudar para pausa longa
+                } else if (pomoCount === 7) {
+                    setCounter(focoHoje.pausaLonga) // Mudar para pausa longa
                     return 'Pausa Longa'
                 } else if (pomoCount > 7) {
                     setPomoCount(1)
-                    setCounter(5) //Mudar para tempo de foco
+                    setCounter(focoHoje.tempoDeFoco) //Mudar para tempo de foco
                     return 'Foco'
-                }                
+                }
             })
 
             setPomoCount(prevPomoCount => prevPomoCount + 1)
 
-            // set counter to the short pause value
         }
         return () => clearInterval(timer);
-      }, [counter, counterStatus]);
+    }, [counter, counterStatus]);
 
     function toggle() {
-        if (pomoCount === 0){
+        if (pomoCount === 0) {
             setPomoCount(1)
             setCounterStatus('Foco')
         } // Significa o início da contagem. Depois disso a contagem é gerenciada dentro do useEffect.
         setCounterPlayPause((prevStat) => !prevStat)
     }
 
-    console.log(pomoCount)
 
-    function minutos(sec){
-
+    function minutos(sec) {
         let segundos
-        
-        if (sec%60 === 0){
-           segundos = '00' 
-        } else if (sec%60 < 10) {
-            segundos = '0' + sec%60
+        if (sec % 60 === 0) {
+            segundos = '00'
+        } else if (sec % 60 < 10) {
+            segundos = '0' + sec % 60
 
         } else {
-            segundos = sec%60
+            segundos = sec % 60
         }
-        
-        
-        
-        return Math.floor(sec/60) + ':' + segundos //.slice(0,2)
-
+        return Math.floor(sec / 60) + ':' + segundos //.slice(0,2)
     }
 
-    console.log(pomoCount)
-    // console.log(minutos(1500))
-    // console.log(minutos(1499))
-
-  return (
-    <div className='pomodoro'>
-        <h1>{minutos(counter)}</h1>
-        <h3>{counterStatus}</h3>
-        <div onClick={toggle} className='play-pause'>{counterPlayPause ? <BsPauseCircle /> : <BsPlayCircle />}</div>
-        {/* <div onClick={stop} className='play-pause'><BsPlayCircle /></div> */}
-    </div>
-  )
+    return (
+        <div className='pomodoro'>
+            <h1>{minutos(counter)}</h1>
+            <h3>{counterStatus}</h3>
+            <div className='counter-container'>            
+                <div className='umfoco concluido'></div>
+                <div className='umfoco'></div>
+                <div className='umfoco'></div>
+                <div className='umfoco'></div>
+            </div>
+            <div onClick={toggle} className='play-pause'>{counterPlayPause ? <BsPauseCircle /> : <BsPlayCircle />}</div>
+        </div>
+    )
 }
 
 export default Pomodoro

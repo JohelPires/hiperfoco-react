@@ -2,9 +2,12 @@ import React from 'react'
 
 function NavBar() {
   return (
-    <div className='navbar'>
+    <nav className='navbar'>
         <h1>hiperfoco</h1>
-    </div>
+        <div className='menu-items'>
+            <h3>sobre</h3>
+        </div>
+    </nav>
   )
 }
 
