@@ -1,5 +1,5 @@
 import React from 'react'
-import { BsFillCheckSquareFill, BsFillSquareFill, BsFillTrashFill} from 'react-icons/bs'
+import { BsFillCheckSquareFill, BsFillPlusSquareFill, BsFillSquareFill, BsFillTrashFill} from 'react-icons/bs'
 
 //FUTURE FUNCIONALITY:
 // - Mark STAR: only one task is marked as star, so it is the most important task to complete.
@@ -23,7 +23,7 @@ function TaskPlanner(props) {
                 {e.completed ? <BsFillCheckSquareFill /> : <BsFillSquareFill />}
                 {e.completed ? <h3 className='completed'>{e.task}</h3> : <h3>{e.task}</h3>}
             </div>
-            <div className='delete-btn' onClick={del}><BsFillTrashFill /></div>
+            <div className='delete-btn' onClick={() => del(e)}><BsFillTrashFill /></div>
         </div>
     ))
 
@@ -48,9 +48,16 @@ function TaskPlanner(props) {
         setAddTask('')
     }
 
-    function del() {
-        alert('delete')
+    function del(e) {
         
+        const updateDbDia = []
+        props.db.map((task) => {
+            if (e.id !== task.id){
+                updateDbDia.push(task)
+            }
+        })
+        props.setDbDia(updateDbDia)
+    
     }
 
   return (
@@ -58,16 +65,16 @@ function TaskPlanner(props) {
         <h2>{props.title}</h2>
         <div className="task-list">
             {items}
-            <form onSubmit={add}>
+            <form className='addtask-form' onSubmit={add}>
+                <button className='addtask-btn'><BsFillPlusSquareFill /> </button>
                 <input 
-                    className='task-item' 
+                    className='addtask-input' 
                     type="text"
                     name='taskToAdd'
                     value={addTask}
                     onChange={handleChange}
                     placeholder='adicionar tarefa...' 
                 />
-                <button>+</button>
             </form>
              
         </div>

@@ -17,7 +17,7 @@ function App() {
   const [dbDia, setDbDia] = useState(
     [{ 
       id: 1,
-      task: 'Deixar o Task Planner funcional',
+      task: 'Add localstorage functionality',
       completed: false,
       star: false
     },
@@ -32,7 +32,8 @@ function App() {
       task: 'finish the git/github tutorial',
       completed: false,
       star: false
-    }])
+    }
+  ])
   
   const dbSprints = ['do this', 'do that', 'do that other thing']
   
