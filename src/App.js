@@ -44,6 +44,7 @@ function App() {
       <TaskPlanner
         title='Tarefas do dia'
         db={dbDia}
+        setDbDia={setDbDia}
       />
       <TaskPlanner 
         title='Sprints'
