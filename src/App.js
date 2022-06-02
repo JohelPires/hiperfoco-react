@@ -17,19 +17,19 @@ function App() {
   const [dbDia, setDbDia] = useState(
     [{ 
       id: 1,
-      task: 'do this',
-      completed: true,
+      task: 'Deixar o Task Planner funcional',
+      completed: false,
       star: false
     },
     { 
       id: 2,
-      task: 'do that',
+      task: 'arrumar cozinha/sala',
       completed: false,
       star: false
     },
     { 
       id: 3,
-      task: 'do that other thing',
+      task: 'finish the git/github tutorial',
       completed: false,
       star: false
     }])

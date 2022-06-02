@@ -7,29 +7,14 @@ import { BsFillCheckSquareFill, BsFillSquareFill, BsFillTrashFill} from 'react-i
 
 function TaskPlanner(props) {
 
+    const [addTask, setAddTask] = React.useState('')
+
     function toggleCompleted(e) {
-        
-        //THIS FUNCTION CHANGES THE STATE OF db.completed
-        const update = [...props.db]
-        console.log(e)
-        console.log(update)
-
-
-        // THIS IS WHAT I HAVE TO DO:
-        // const [items, setItems] = useState ([
-        //     {id: 1, someattr: "a string", anotherattr: ""},
-        //     {id: 2, someattr: "another string", anotherattr: ""},
-        //     {id: 3, someattr: "a string", anotherattr: ""},
-        // ])
-        
-        // setItems (
-        //     items.map((item) => {
-        //         return item.id === updatedItem.id? updatedItem: item;
-        //     })
-        // ); 
-
-
-
+        e.completed = !e.completed
+        const update = [...props.db].map(item => {
+            return item.id === e.id ? e : item
+        })
+        props.setDbDia(update)
     }
 
     const items = props.db.map(e => (
@@ -38,16 +23,53 @@ function TaskPlanner(props) {
                 {e.completed ? <BsFillCheckSquareFill /> : <BsFillSquareFill />}
                 {e.completed ? <h3 className='completed'>{e.task}</h3> : <h3>{e.task}</h3>}
             </div>
-            <BsFillTrashFill />
+            <div className='delete-btn' onClick={del}><BsFillTrashFill /></div>
         </div>
     ))
+
+    function handleChange(e){
+        setAddTask(e.target.value)
+    }
+    function add(e){
+        e.preventDefault()
+        
+        const newId = props.db[props.db.length-1].id + 1
+        const newTask = { 
+            id: newId,
+            task: addTask,
+            completed: false,
+            star: false
+          }
+
+        const updateDbDia = [...props.db]
+        updateDbDia.push(newTask)
+        props.setDbDia(updateDbDia)
+
+        setAddTask('')
+    }
+
+    function del() {
+        alert('delete')
+        
+    }
 
   return (
     <div className='tasks-container'>
         <h2>{props.title}</h2>
         <div className="task-list">
             {items}
-             <h3>adicionar tarefa...</h3> {/*THIS SHOULD BE AN INPUT FIELD */}
+            <form onSubmit={add}>
+                <input 
+                    className='task-item' 
+                    type="text"
+                    name='taskToAdd'
+                    value={addTask}
+                    onChange={handleChange}
+                    placeholder='adicionar tarefa...' 
+                />
+                <button>+</button>
+            </form>
+             
         </div>
     </div>
   )

@@ -124,11 +124,23 @@ body, * {
 .tasks-container {
   @include container-box;
 
+  height: auto;
+
 
   .task-list {
     width: 90%;
     // margin-left: 50px;
     text-align: left;
+    overflow: auto;
+    padding: 0 10px 0 5px;
+
+    .delete-btn {
+      cursor: pointer;
+
+      &:hover{
+        color: red;
+      }
+    }
     
     h3 {
       
