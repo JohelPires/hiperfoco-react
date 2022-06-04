@@ -18,7 +18,7 @@ function TaskPlanner(props) {
     }
 
     const items = props.db.map(e => (
-        <div className='task-item'>
+        <div key={e.id} className='task-item'>
             <div className='task' onClick={() => toggleCompleted(e)}>
                 {e.completed ? <BsFillCheckSquareFill /> : <BsFillSquareFill />}
                 {e.completed ? <h3 className='completed'>{e.task}</h3> : <h3>{e.task}</h3>}
@@ -33,19 +33,28 @@ function TaskPlanner(props) {
     function add(e){
         e.preventDefault()
         
-        const newId = props.db[props.db.length-1].id + 1
-        const newTask = { 
-            id: newId,
-            task: addTask,
-            completed: false,
-            star: false
-          }
+        if (addTask) {
+            
+            if (props.db.length > 0){
+                var newId = props.db[props.db.length-1].id + 1
+            } else {
+                var newId = 1
+            }
+            const newTask = { 
+                id: newId,
+                task: addTask,
+                completed: false,
+                star: false
+              }
+    
+            const updateDbDia = [...props.db]
+            updateDbDia.push(newTask)
+            props.setDbDia(updateDbDia)
+    
+            setAddTask('')
+        }
 
-        const updateDbDia = [...props.db]
-        updateDbDia.push(newTask)
-        props.setDbDia(updateDbDia)
-
-        setAddTask('')
+        
     }
 
     function del(e) {
