@@ -32,12 +32,18 @@ import PomoCountBar from './PomoCountBar'
 
 function Pomodoro() {
 
-    const [focoHoje, setFocoHoje] = React.useState({
+    // const [focoHoje, setFocoHoje] = React.useState({
+    //     pomoCompletas: 0,  // Número de ciclos completos de 1 foco e uma pausa curta.
+    //     tempoDeFoco: 1500, //1500 = 25 minutos
+    //     pausaCurta: 300, //300 = 5 minutos
+    //     pausaLonga: 900 //900 = 15 minutos
+    // })
+    const focoHoje = {
         pomoCompletas: 0,  // Número de ciclos completos de 1 foco e uma pausa curta.
-        tempoDeFoco: 1500, //1500 = 25 minutos
-        pausaCurta: 300, //300 = 5 minutos
-        pausaLonga: 900 //900 = 15 minutos
-    })
+        tempoDeFoco: 15, //1500 = 25 minutos
+        pausaCurta: 3, //300 = 5 minutos
+        pausaLonga: 9 //900 = 15 minutos
+    }
 
 
     // CONTADOR DE SEGUNDOS
@@ -49,7 +55,7 @@ function Pomodoro() {
     const [play] = useSound(bell)
     const [pomoCompletas, setPomoCompletas] = React.useState(0)
 
-    let intervalID
+    // let intervalID
 
     React.useEffect(() => {
         const timer =

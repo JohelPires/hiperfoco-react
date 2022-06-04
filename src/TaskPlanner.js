@@ -34,11 +34,11 @@ function TaskPlanner(props) {
         e.preventDefault()
         
         if (addTask) {
-            
+            let newId
             if (props.db.length > 0){
-                var newId = props.db[props.db.length-1].id + 1
+                newId = props.db[props.db.length-1].id + 1
             } else {
-                var newId = 1
+                newId = 1
             }
             const newTask = { 
                 id: newId,
@@ -64,6 +64,7 @@ function TaskPlanner(props) {
             if (e.id !== task.id){
                 updateDbDia.push(task)
             }
+            return
         })
         props.setDbDia(updateDbDia)
     
