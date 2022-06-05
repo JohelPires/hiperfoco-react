@@ -76,11 +76,12 @@ function App() {
         <TaskPlanner
           title='Tarefas do dia'
           db={dbDia}
-          setDbDia={setDbDia}
+          setDb={setDbDia}
         />
         <TaskPlanner
-          title='Sprints'
+          title='Tarefas do Sprint'
           db={dbSprints}
+          setDb={setDbSprints}
         />
         
         

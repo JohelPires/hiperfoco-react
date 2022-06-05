@@ -14,7 +14,7 @@ function TaskPlanner(props) {
         const update = [...props.db].map(item => {
             return item.id === e.id ? e : item
         })
-        props.setDbDia(update)
+        props.setDb(update)
     }
 
     const items = props.db.map(e => (
@@ -49,7 +49,7 @@ function TaskPlanner(props) {
     
             const updateDbDia = [...props.db]
             updateDbDia.push(newTask)
-            props.setDbDia(updateDbDia)
+            props.setDb(updateDbDia)
     
             setAddTask('')
         }
@@ -66,7 +66,7 @@ function TaskPlanner(props) {
             }
             return
         })
-        props.setDbDia(updateDbDia)
+        props.setDb(updateDbDia)
     
     }
 
