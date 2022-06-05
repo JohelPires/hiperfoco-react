@@ -14,8 +14,10 @@ import TaskPlanner from './TaskPlanner';
 function App() {
 
   const tarefasDoDia = JSON.parse(localStorage.getItem("tarefasDoDia")) || [];
+  const sprints = JSON.parse(localStorage.getItem("sprints")) || [];
 
   const [dbDia, setDbDia] = useState(tarefasDoDia)
+  const [dbSprints, setDbSprints] = useState(sprints)
 
 
 
@@ -45,8 +47,8 @@ function App() {
   //     star: false
   //   }
   // ])
-  
-  const dbSprints = ['do this', 'do that', 'do that other thing']
+
+  // const dbSprints = ['do this', 'do that', 'do that other thing']
 
 
   // useEffect(() => {
@@ -60,23 +62,29 @@ function App() {
   useEffect(() => {
     localStorage.setItem('tarefasDoDia', JSON.stringify(dbDia))
   }, [dbDia])
-  
-  
+
+  useEffect(() => {
+    localStorage.setItem('sprints', JSON.stringify(dbSprints))
+  }, [dbSprints])
+
+
   return (
     <div className="App">
       <NavBar />
-      <Pomodoro />
-      <TaskPlanner
-        title='Tarefas do dia'
-        db={dbDia}
-        setDbDia={setDbDia}
-      />
-      <TaskPlanner 
-        title='Sprints'
-        db={dbSprints}
-      />
-      <div className='tasks'>Tarefas do dia</div>
-      <div>Sprint</div>
+      <main className='conteudo'>
+        <Pomodoro />
+        <TaskPlanner
+          title='Tarefas do dia'
+          db={dbDia}
+          setDbDia={setDbDia}
+        />
+        <TaskPlanner
+          title='Sprints'
+          db={dbSprints}
+        />
+        
+        
+      </main>
       <Footer />
     </div>
   );
