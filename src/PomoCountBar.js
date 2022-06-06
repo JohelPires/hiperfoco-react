@@ -7,18 +7,18 @@ function PomoCountBar(props) {
     const elements = n.map(i => {
 
         if (props.pomoCompletas > i) {
-            return <div className='umfoco concluido'></div>
+            return <div key={i} className='umfoco concluido'></div>
         } else {
-            return <div className='umfoco'></div>
+            return <div key={i} className='umfoco'></div>
         }
         
     })
     const elements2 = n.map(i => {
 
         if (props.pomoCompletas > i+4) {
-            return <div className='umfoco concluido'></div>
+            return <div key={i+4} className='umfoco concluido'></div>
         } else {
-            return <div className='umfoco'></div>
+            return <div key={i+4} className='umfoco'></div>
         }
         
     })

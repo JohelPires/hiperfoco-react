@@ -15,7 +15,7 @@ import Sobre from './pages/Sobre';
 
 function App() {
 
-const [sobre, setSobre] = useState(true)
+const [sobre, setSobre] = useState(false)
 function toggleSobre() {
   setSobre((prevSobre) => !prevSobre)
 }

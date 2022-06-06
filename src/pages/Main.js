@@ -8,6 +8,8 @@ function Main() {
     const tarefasDoDia = JSON.parse(localStorage.getItem("tarefasDoDia")) || [];
     const sprints = JSON.parse(localStorage.getItem("sprints")) || [];
 
+    console.log(tarefasDoDia)
+
     const [dbDia, setDbDia] = useState(tarefasDoDia)
     const [dbSprints, setDbSprints] = useState(sprints)
 
