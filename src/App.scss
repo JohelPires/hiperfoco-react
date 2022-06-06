@@ -30,17 +30,13 @@ body, * {
   margin: 0;
   text-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-  
   .menu-items {
     display: flex;
     align-items: center;
     gap: 15px;
     h3 {
     font-weight: 400;
+    cursor: pointer;
     }
   }
 }
