@@ -1,7 +1,7 @@
 import React from 'react'
 import useSound from 'use-sound'
 import bell from './temple_bell.mp3'
-import { BsPauseCircle, BsPlayCircle } from 'react-icons/bs'
+import { BsPauseCircle, BsPlayCircle, BsSkipForwardCircle, BsStopCircle } from 'react-icons/bs'
 import PomoCountBar from './PomoCountBar'
 
 // Counter Status:
@@ -70,19 +70,19 @@ function Pomodoro() {
                     setCounter(focoHoje.pausaCurta) // mudar para pausa curta: setCounter(pausaCurta)
                     const updatePromoCompletas = pomoCompletas + 1
                     setPomoCompletas(updatePromoCompletas)
-                    return 'Pausa curta'
+                    return 'Pausa curta - Relaxe'
                 } else if (pomoCount % 2 === 0 && pomoCount < 7) {
                     setCounter(focoHoje.tempoDeFoco) // Mudar para tempo de foco
-                    return 'Foco'
+                    return 'Foco no trabalho'
                 } else if (pomoCount === 7) {
                     setCounter(focoHoje.pausaLonga) // Mudar para pausa longa
                     const updatePromoCompletas = pomoCompletas + 1
                     setPomoCompletas(updatePromoCompletas)
-                    return 'Pausa Longa'
+                    return 'Pausa Longa - Vá tomar um café!'
                 } else if (pomoCount > 7) {
                     setPomoCount(1)
                     setCounter(focoHoje.tempoDeFoco) //Mudar para tempo de foco
-                    return 'Foco'
+                    return 'Foco no trabalho'
                 }
             })
 
@@ -95,7 +95,7 @@ function Pomodoro() {
     function toggle() {
         if (pomoCount === 0) {
             setPomoCount(1)
-            setCounterStatus('Foco')
+            setCounterStatus('Foco no trabalho')
             play()
         } // Significa o início da contagem. Depois disso a contagem é gerenciada dentro do useEffect.
         setCounterPlayPause((prevStat) => !prevStat)
