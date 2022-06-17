@@ -83,7 +83,7 @@ body, * {
   background-color: white;
   color: $font-color;
   width: 400px;
-  height: 300px;
+  height: 320px;
   max-width: 500px;
   max-height: 400px;
   margin: auto;
@@ -103,10 +103,24 @@ body, * {
 
 }
 
+
 .pomodoro {
 
   @include container-box;
 
+  .time-config-container {
+    display: flex;
+    gap: 15px;
+
+
+  }
+  .time_controllers{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
   
   h1 {
     font-size: 3.2rem;
@@ -160,7 +174,7 @@ body, * {
   @include container-box;
 
   height: auto;
-  min-height: 300px;
+  min-height: 320px;
 
 
   .task-list {
