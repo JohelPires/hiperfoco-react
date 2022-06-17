@@ -111,6 +111,8 @@ body, * {
   .time-config-container {
     display: flex;
     gap: 15px;
+    // border: 1px solid rgba(128, 128, 128, 0.466);
+    // padding: 10px;
 
 
   }
@@ -164,7 +166,8 @@ body, * {
   
   }
   .play-pause {
-    margin-top: 30px;
+    margin-top: 20px;
+    margin-bottom: 10px;
     font-size: 40px;
   }
 }

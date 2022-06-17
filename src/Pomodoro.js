@@ -118,6 +118,13 @@ function Pomodoro() {
     return Math.floor(sec / 60) + ':' + segundos //.slice(0,2)
   }
 
+  function handleIncDec(e) {
+    alert('clicou')
+  }
+  function resetSession(e) {
+    alert('clicou')
+  }
+
   if (pomoCompletas > 8) {
     setPomoCompletas(0)
   }
@@ -125,6 +132,17 @@ function Pomodoro() {
   return (
     <div className='pomodoro'>
       <h2>Pomodoro timer</h2>
+      <h1 id='time-left'>{minutos(counter)}</h1>
+      <h3 id='timer-label'>{counterStatus}</h3>
+      <PomoCountBar pomoCompletas={pomoCompletas} />
+      <div style={{ display: 'flex', gap: '20px' }}>
+        <div id='start_stop' onClick={toggle} className='play-pause'>
+          {counterPlayPause ? <BsPauseCircle /> : <BsPlayCircle />}
+        </div>
+        <div id='reset' onClick={resetSession} className='play-pause'>
+          <BsStopCircle />
+        </div>
+      </div>
       <div className='time-config-container'>
         <div className='break-container'>
           <p id='break-label'>Break Length</p>
@@ -133,7 +151,7 @@ function Pomodoro() {
               id='break-decrement'
               onClick={(e) => handleIncDec(e)}
             />
-            <p>5</p>
+            <p id='break-length'>5</p>
             <BsFillArrowUpSquareFill
               id='break-increment'
               onClick={(e) => handleIncDec(e)}
@@ -147,7 +165,7 @@ function Pomodoro() {
               id='session-decrement'
               onClick={(e) => handleIncDec(e)}
             />
-            <p>25</p>
+            <p id='session-length'>25</p>
             <BsFillArrowDownSquareFill
               id='session-increment'
               onClick={(e) => handleIncDec(e)}
@@ -161,19 +179,13 @@ function Pomodoro() {
               id='longpause-decrement'
               onClick={(e) => handleIncDec(e)}
             />
-            <p>15</p>
+            <p id='longbreak-length'>15</p>
             <BsFillArrowDownSquareFill
               id='longpause-increment'
               onClick={(e) => handleIncDec(e)}
             />
           </div>
         </div>
-      </div>
-      <h1>{minutos(counter)}</h1>
-      <h3>{counterStatus}</h3>
-      <PomoCountBar pomoCompletas={pomoCompletas} />
-      <div onClick={toggle} className='play-pause'>
-        {counterPlayPause ? <BsPauseCircle /> : <BsPlayCircle />}
       </div>
     </div>
   )

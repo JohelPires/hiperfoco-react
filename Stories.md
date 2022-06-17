@@ -13,17 +13,17 @@
 
 - [x] User Story #4: I can see two clickable elements with corresponding IDs: id="break-increment" and id="session-increment".
 
-- User Story #5: I can see an element with a corresponding id="break-length", which by default (on load) displays a value of 5.
+- [x] User Story #5: I can see an element with a corresponding id="break-length", which by default (on load) displays a value of 5.
 
-- User Story #6: I can see an element with a corresponding id="session-length", which by default displays a value of 25.
+- [x] User Story #6: I can see an element with a corresponding id="session-length", which by default displays a value of 25.
 
-- User Story #7: I can see an element with a corresponding id="timer-label", that contains a string indicating a session is initialized (e.g. "Session").
+- [x] User Story #7: I can see an element with a corresponding id="timer-label", that contains a string indicating a session is initialized (e.g. "Session").
 
-- User Story #8: I can see an element with corresponding id="time-left". NOTE: Paused or running, the value in this field should always be displayed in mm:ss format (i.e. 25:00).
+- [x] User Story #8: I can see an element with corresponding id="time-left". NOTE: Paused or running, the value in this field should always be displayed in mm:ss format (i.e. 25:00).
 
-- User Story #9: I can see a clickable element with a corresponding id="start_stop".
+- [x] User Story #9: I can see a clickable element with a corresponding id="start_stop".
 
-- User Story #10: I can see a clickable element with a corresponding id="reset".
+- [x] User Story #10: I can see a clickable element with a corresponding id="reset".
 
 - User Story #11: When I click the element with the id of reset, any running timer should be stopped, the value within id="break-length" should return to 5, the value within id="session-length" should return to 25, and the element with id="time-left" should reset to its default state.
 
