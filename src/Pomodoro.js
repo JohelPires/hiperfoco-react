@@ -97,7 +97,44 @@ function Pomodoro() {
   }
 
   function handleIncDec(e) {
-    alert('clicou')
+    let update
+    switch (e.target.id) {
+      case 'break-decrement':
+        focoHoje.pausaCurta > 60
+          ? (update = focoHoje.pausaCurta - 60)
+          : (update = 60)
+        setFocoHoje((prevFoco) => ({ ...prevFoco, pausaCurta: update }))
+        break
+      case 'break-increment':
+        update = focoHoje.pausaCurta + 60
+        setFocoHoje((prevFoco) => ({ ...prevFoco, pausaCurta: update }))
+        break
+
+      case 'session-decrement':
+        focoHoje.tempoDeFoco > 60
+          ? (update = focoHoje.tempoDeFoco - 60)
+          : (update = 60)
+        setFocoHoje((prevFoco) => ({ ...prevFoco, tempoDeFoco: update }))
+        break
+      case 'session-increment':
+        update = focoHoje.tempoDeFoco + 60
+        setFocoHoje((prevFoco) => ({ ...prevFoco, tempoDeFoco: update }))
+        break
+
+      case 'break-decrement':
+        focoHoje.pausaCurta > 60
+          ? (update = focoHoje.pausaCurta - 60)
+          : (update = 60)
+        setFocoHoje((prevFoco) => ({ ...prevFoco, pausaCurta: update }))
+        break
+      case 'break-increment':
+        update = focoHoje.pausaCurta + 60
+        setFocoHoje((prevFoco) => ({ ...prevFoco, pausaCurta: update }))
+        break
+
+      default:
+        break
+    }
   }
   function resetSession(e) {
     setFocoHoje({
