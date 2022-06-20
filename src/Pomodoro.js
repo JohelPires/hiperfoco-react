@@ -8,48 +8,26 @@ import {
   BsStopCircle,
   BsFillArrowUpSquareFill,
   BsFillArrowDownSquareFill,
+  BsArrowDownSquare,
+  BsArrowUpShort,
+  BsArrowDownShort,
+  BsArrowUpSquare,
 } from 'react-icons/bs'
 import PomoCountBar from './PomoCountBar'
 
-// Counter Status:
-// 'parado', 'pomo', 'pausaCurta', 'pausaLonga'
-// pomoCount:
-// 0 = parado
-// 1 = Foco
-// 2 = pausa curta
-// 3 = Foco
-// 4 = pausa curta
-// 5 = Foco
-// 6 = pausa curta
-// 7 = Foco
-// 8 = pausa longa
-
-// TO-DO:
-// - stop button: sets pomoCount to 0, asks for confirmation
-// - Change states to one single state. See if it's necessary
-// - Clean up the code and use the variables for the tempos.
-// - colocar as mudanças de cores.
-// - Local storage para gravar os dados e estatísticas
-// - fix the unique key warning
-
-// - dividir em componentes: um para o pomodoro em si, outro para estatisticas.
-// - graphs and animations
-
-// - colocar o marcador de pomodoros feitos: .... ....
-
 function Pomodoro() {
-  // const [focoHoje, setFocoHoje] = React.useState({
-  //     pomoCompletas: 0,  // Número de ciclos completos de 1 foco e uma pausa curta.
-  //     tempoDeFoco: 1500, //1500 = 25 minutos
-  //     pausaCurta: 300, //300 = 5 minutos
-  //     pausaLonga: 900 //900 = 15 minutos
-  // })
-  const focoHoje = {
+  // const focoHoje = {
+  //   pomoCompletas: 0, // Número de ciclos completos de 1 foco e uma pausa curta.
+  //   tempoDeFoco: 1500, //1500 = 25 minutos
+  //   pausaCurta: 300, //300 = 5 minutos
+  //   pausaLonga: 900, //900 = 15 minutos
+  // }
+  const [focoHoje, setFocoHoje] = React.useState({
     pomoCompletas: 0, // Número de ciclos completos de 1 foco e uma pausa curta.
     tempoDeFoco: 1500, //1500 = 25 minutos
     pausaCurta: 300, //300 = 5 minutos
     pausaLonga: 900, //900 = 15 minutos
-  }
+  })
 
   // CONTADOR DE SEGUNDOS
   const [counter, setCounter] = React.useState(focoHoje.tempoDeFoco)
@@ -122,7 +100,17 @@ function Pomodoro() {
     alert('clicou')
   }
   function resetSession(e) {
-    alert('clicou')
+    setFocoHoje({
+      pomoCompletas: 0, // Número de ciclos completos de 1 foco e uma pausa curta.
+      tempoDeFoco: 1500, //1500 = 25 minutos
+      pausaCurta: 300, //300 = 5 minutos
+      pausaLonga: 900, //900 = 15 minutos
+    })
+    setCounter(focoHoje.tempoDeFoco)
+    setCounterStatus('parado')
+    setCounterPlayPause(false)
+    setPomoCount(0)
+    setPomoCompletas(0)
   }
 
   if (pomoCompletas > 8) {
@@ -145,42 +133,54 @@ function Pomodoro() {
       </div>
       <div className='time-config-container'>
         <div className='break-container'>
-          <p id='break-label'>Break Length</p>
+          <p className='config-label' id='break-label'>
+            Break Length
+          </p>
           <div className='time_controllers'>
-            <BsFillArrowDownSquareFill
+            <BsArrowDownShort
+              className='arrow-btn'
               id='break-decrement'
               onClick={(e) => handleIncDec(e)}
             />
-            <p id='break-length'>5</p>
-            <BsFillArrowUpSquareFill
+            <p id='break-length'>{focoHoje.pausaCurta / 60}</p>
+            <BsArrowUpShort
+              className='arrow-btn'
               id='break-increment'
               onClick={(e) => handleIncDec(e)}
             />
           </div>
         </div>
         <div className='session-container'>
-          <p id='session-label'>Session Length</p>
+          <p className='config-label' id='session-label'>
+            Session Length
+          </p>
           <div className='time_controllers'>
-            <BsFillArrowUpSquareFill
+            <BsArrowUpShort
+              className='arrow-btn'
               id='session-decrement'
               onClick={(e) => handleIncDec(e)}
             />
-            <p id='session-length'>25</p>
-            <BsFillArrowDownSquareFill
+            <p id='session-length'>{focoHoje.tempoDeFoco / 60}</p>
+            <BsArrowDownShort
+              className='arrow-btn'
               id='session-increment'
               onClick={(e) => handleIncDec(e)}
             />
           </div>
         </div>
         <div className='longbreak-container'>
-          <p id='long-break'>Long Break</p>
+          <p className='config-label' id='long-break'>
+            Long Break
+          </p>
           <div className='time_controllers'>
-            <BsFillArrowUpSquareFill
+            <BsArrowUpShort
+              className='arrow-btn'
               id='longpause-decrement'
               onClick={(e) => handleIncDec(e)}
             />
-            <p id='longbreak-length'>15</p>
-            <BsFillArrowDownSquareFill
+            <p id='longbreak-length'>{focoHoje.pausaLonga / 60}</p>
+            <BsArrowDownShort
+              className='arrow-btn'
               id='longpause-increment'
               onClick={(e) => handleIncDec(e)}
             />

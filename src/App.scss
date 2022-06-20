@@ -114,6 +114,19 @@ body, * {
     // border: 1px solid rgba(128, 128, 128, 0.466);
     // padding: 10px;
 
+    .config-label {
+
+      font-size: 0.8rem;
+      margin: 3px 0;
+    }
+
+    .arrow-btn {
+      cursor: pointer;
+      &:hover {
+        color: orange;
+      }
+    }
+
 
   }
   .time_controllers{
