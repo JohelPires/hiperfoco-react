@@ -40,6 +40,7 @@ function Pomodoro() {
 
   // let intervalID
   React.useEffect(() => {
+    console.log(focoHoje)
     setCounter(focoHoje.tempoDeFoco)
   }, [focoHoje])
 
@@ -103,50 +104,55 @@ function Pomodoro() {
     let update
     switch (e.target.id) {
       case 'break-decrement':
-        focoHoje.pausaCurta > 60
-          ? (update = focoHoje.pausaCurta - 60)
-          : (update = 60)
-        setFocoHoje((prevFoco) => ({ ...prevFoco, pausaCurta: update }))
+        focoHoje.pausaCurta > 60 &&
+          setFocoHoje((prevFoco) => ({
+            ...prevFoco,
+            pausaCurta: prevFoco.pausaCurta - 60,
+          }))
         break
       case 'break-increment':
-        update = focoHoje.pausaCurta + 60
-        setFocoHoje((prevFoco) => ({ ...prevFoco, pausaCurta: update }))
+        focoHoje.pausaCurta < 3600 &&
+          setFocoHoje((prevFoco) => ({
+            ...prevFoco,
+            pausaCurta: prevFoco.pausaCurta + 60,
+          }))
         break
 
       case 'session-decrement':
-        // focoHoje.tempoDeFoco > 60
-        //   ? (update = focoHoje.tempoDeFoco - 60)
-        //   : (update = 60)
-        setFocoHoje((prevFoco) => ({
-          ...prevFoco,
-          tempoDeFoco: prevFoco.tempoDeFoco - 60,
-        }))
-        // setCounter(focoHoje.tempoDeFoco)
+        focoHoje.tempoDeFoco > 60 &&
+          setFocoHoje((prevFoco) => ({
+            ...prevFoco,
+            tempoDeFoco: prevFoco.tempoDeFoco - 60,
+          }))
         break
       case 'session-increment':
-        // update = focoHoje.tempoDeFoco + 60
-        setFocoHoje((prevFoco) => ({
-          ...prevFoco,
-          tempoDeFoco: prevFoco.tempoDeFoco + 60,
-        }))
+        focoHoje.tempoDeFoco < 3600 &&
+          setFocoHoje((prevFoco) => ({
+            ...prevFoco,
+            tempoDeFoco: prevFoco.tempoDeFoco + 60,
+          }))
         // setCounter(update)
         break
 
       case 'longpause-decrement':
-        focoHoje.pausaLonga > 60
-          ? (update = focoHoje.pausaLonga - 60)
-          : (update = 60)
-        setFocoHoje((prevFoco) => ({ ...prevFoco, pausaLonga: update }))
+        focoHoje.pausaLonga > 60 &&
+          setFocoHoje((prevFoco) => ({
+            ...prevFoco,
+            pausaLonga: prevFoco.pausaLonga - 60,
+          }))
         break
       case 'longpause-increment':
-        update = focoHoje.pausaLonga + 60
-        setFocoHoje((prevFoco) => ({ ...prevFoco, pausaLonga: update }))
+        // update = focoHoje.pausaLonga + 60
+        setFocoHoje((prevFoco) => ({
+          ...prevFoco,
+          pausaLonga: prevFoco.pausaLonga + 60,
+        }))
         break
 
       default:
         break
     }
-    console.log(focoHoje)
+    // console.log(focoHoje)
   }
   function resetSession(e) {
     setFocoHoje({
