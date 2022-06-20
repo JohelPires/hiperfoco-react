@@ -39,6 +39,9 @@ function Pomodoro() {
   const [pomoCompletas, setPomoCompletas] = React.useState(0)
 
   // let intervalID
+  React.useEffect(() => {
+    setCounter(focoHoje.tempoDeFoco)
+  }, [focoHoje])
 
   React.useEffect(() => {
     const timer =
@@ -111,30 +114,39 @@ function Pomodoro() {
         break
 
       case 'session-decrement':
-        focoHoje.tempoDeFoco > 60
-          ? (update = focoHoje.tempoDeFoco - 60)
-          : (update = 60)
-        setFocoHoje((prevFoco) => ({ ...prevFoco, tempoDeFoco: update }))
+        // focoHoje.tempoDeFoco > 60
+        //   ? (update = focoHoje.tempoDeFoco - 60)
+        //   : (update = 60)
+        setFocoHoje((prevFoco) => ({
+          ...prevFoco,
+          tempoDeFoco: prevFoco.tempoDeFoco - 60,
+        }))
+        // setCounter(focoHoje.tempoDeFoco)
         break
       case 'session-increment':
-        update = focoHoje.tempoDeFoco + 60
-        setFocoHoje((prevFoco) => ({ ...prevFoco, tempoDeFoco: update }))
+        // update = focoHoje.tempoDeFoco + 60
+        setFocoHoje((prevFoco) => ({
+          ...prevFoco,
+          tempoDeFoco: prevFoco.tempoDeFoco + 60,
+        }))
+        // setCounter(update)
         break
 
-      case 'break-decrement':
-        focoHoje.pausaCurta > 60
-          ? (update = focoHoje.pausaCurta - 60)
+      case 'longpause-decrement':
+        focoHoje.pausaLonga > 60
+          ? (update = focoHoje.pausaLonga - 60)
           : (update = 60)
-        setFocoHoje((prevFoco) => ({ ...prevFoco, pausaCurta: update }))
+        setFocoHoje((prevFoco) => ({ ...prevFoco, pausaLonga: update }))
         break
-      case 'break-increment':
-        update = focoHoje.pausaCurta + 60
-        setFocoHoje((prevFoco) => ({ ...prevFoco, pausaCurta: update }))
+      case 'longpause-increment':
+        update = focoHoje.pausaLonga + 60
+        setFocoHoje((prevFoco) => ({ ...prevFoco, pausaLonga: update }))
         break
 
       default:
         break
     }
+    console.log(focoHoje)
   }
   function resetSession(e) {
     setFocoHoje({
@@ -192,13 +204,13 @@ function Pomodoro() {
             Session Length
           </p>
           <div className='time_controllers'>
-            <BsArrowUpShort
+            <BsArrowDownShort
               className='arrow-btn'
               id='session-decrement'
               onClick={(e) => handleIncDec(e)}
             />
             <p id='session-length'>{focoHoje.tempoDeFoco / 60}</p>
-            <BsArrowDownShort
+            <BsArrowUpShort
               className='arrow-btn'
               id='session-increment'
               onClick={(e) => handleIncDec(e)}
@@ -210,13 +222,13 @@ function Pomodoro() {
             Long Break
           </p>
           <div className='time_controllers'>
-            <BsArrowUpShort
+            <BsArrowDownShort
               className='arrow-btn'
               id='longpause-decrement'
               onClick={(e) => handleIncDec(e)}
             />
             <p id='longbreak-length'>{focoHoje.pausaLonga / 60}</p>
-            <BsArrowDownShort
+            <BsArrowUpShort
               className='arrow-btn'
               id='longpause-increment'
               onClick={(e) => handleIncDec(e)}

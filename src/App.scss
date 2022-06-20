@@ -111,17 +111,24 @@ body, * {
   .time-config-container {
     display: flex;
     gap: 15px;
+    user-select: none;
+    color: rgba(128, 128, 128, 0.7);
     // border: 1px solid rgba(128, 128, 128, 0.466);
     // padding: 10px;
 
+    &:hover{
+      color: rgba(128, 128, 128, 1);
+    }
+
     .config-label {
 
-      font-size: 0.8rem;
+      font-size: 1rem;
       margin: 3px 0;
     }
 
     .arrow-btn {
       cursor: pointer;
+      // padding: 1px;
       &:hover {
         color: orange;
       }
