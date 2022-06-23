@@ -173,7 +173,7 @@ function Pomodoro() {
   }
 
   return (
-    <div className='pomodoro'>
+    <div className='pomodoro animate__animated animate__fadeIn'>
       <h2>Pomodoro timer</h2>
       <h1 id='time-left'>{minutos(counter)}</h1>
       <h3 id='timer-label'>{counterStatus}</h3>
